@@ -1,0 +1,11 @@
+---json
+{
+  "permalink": "/api/all.json",
+  "eleventyExcludeFromCollections": true
+}
+---
+[
+{%- for joke in jokes.all -%}
+{"id":{{ loop.index0 }},"joke":{{ joke.joke | json | safe }},"punchline":{{ (joke.punchline or "") | json | safe }},"url":"{{ site.baseURL }}/{{ loop.index0 }}/"}{% if not loop.last %},{% endif %}
+{%- endfor -%}
+]
